@@ -6,9 +6,9 @@ select
   id,
   customer__id as customer_id,
   checkout_id,
-  cart_token,
-  checkout_token,
-  token,
+  nullif(cart_token, '') as cart_token,
+  nullif(checkout_token, '') as checkout_token,
+  nullif(token, '') as token,
 
   -- logical ids reported in the application
   "number",
