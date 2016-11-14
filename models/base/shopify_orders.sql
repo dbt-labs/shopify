@@ -53,10 +53,6 @@ select
   total_tax,
   total_weight,
 
-  -- point of sale info
-  user_id,
-  location_id,
-
   -- address
   shipping_address__address1,
   shipping_address__address2,

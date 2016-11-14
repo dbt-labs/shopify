@@ -7,7 +7,6 @@ select
   title,
   vendor,
   quantity,
-  pre_tax_price,
   price,
   taxable,
   gift_card,
