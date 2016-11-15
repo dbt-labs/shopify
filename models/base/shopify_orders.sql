@@ -31,7 +31,7 @@ select
   name,
   note,
   tags,
-
+  gateway,
   -- attribution
   browser_ip,
   source_name,
@@ -95,3 +95,4 @@ from
 where
   -- filter test transactions
   test = false
+  and financial_status != 'voided'
