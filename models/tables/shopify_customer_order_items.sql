@@ -14,7 +14,7 @@ select
     order_id,
     oi.product_id,
     variant_id,
-    co.customer_id
+    co.customer_id,
 
 --Item Info
     oi.name,
@@ -37,7 +37,7 @@ select
 
 --Order Status
     co.financial_status,
-    co.fulfillment_status
+    co.fulfillment_status,
 
 --Calculated Columns
 	case
