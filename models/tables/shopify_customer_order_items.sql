@@ -14,6 +14,7 @@ select
     order_id,
     oi.product_id,
     variant_id,
+    co.customer_id
 
 --Item Info
     oi.name,
@@ -33,9 +34,17 @@ select
 --Timestamps
     co.created_at,
     oi._sdc_received_at,
+
 --Order Status
     co.financial_status,
     co.fulfillment_status
+
+--Calculated Columns
+	case
+		when oi.title like '%Gift Subscription%' then 'Gift Subscription'
+		when oi.title like '%Subscription%' or oi.title like '%Auto renew%' then 'Subscription'
+		else 'Non-Subscription'
+	end as subscription_type
 
 from {{ref('shopify_order_items')}} oi
 join {{ref('shopify_product_variants')}} pv on pv.id = oi.variant_id
