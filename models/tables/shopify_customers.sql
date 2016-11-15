@@ -14,7 +14,7 @@ select u.id,
        verified_email,
        default_address_id,
        u.created_at,
-       o._sdc_received_at,
+       max(o._sdc_received_at) as _sdc_received_at,
        
 --Calculated Columns
        count(o.id) as number_of_orders,
@@ -26,4 +26,4 @@ select u.id,
 
 from {{ref('shopify_users')}} u 
 join {{ref('shopify_orders')}} o on o.customer_id = u.id
-group by 1,2,3,4,5,6,7,8
+group by 1,2,3,4,5,6,7
