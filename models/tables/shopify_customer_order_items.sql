@@ -1,3 +1,12 @@
+{{
+  config({
+    "materialized" : "incremental",
+    "sql_where" : "_sdc_received_at > (select max(_sdc_received_at) from {{this}})",
+    "unique_key" : "id",
+    "sort" : "created_at",
+    })
+}}
+
 select 
     
 --IDs
@@ -18,13 +27,12 @@ select
     oi.total_discount,
     pv.weight,
     pv.weight_unit,
-    co.total_weight as order_total_weight,
     co.subtotal_price as order_subtotal,
     co.customer_order_number,
     
 --Timestamps
     co.created_at,
-    
+    oi._sdc_received_at,
 --Order Status
     co.financial_status,
     co.fulfillment_status

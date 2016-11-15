@@ -14,7 +14,8 @@ select
   taxable,
   gift_card,
   total_discount,
-  grams
+  grams,
+  _sdc_received_at
 
 from
   {{ var('source_schema') }}.{{ var('order_items_table') }}
