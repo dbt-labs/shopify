@@ -51,7 +51,7 @@ select
   shipping_address__province_code,
   shipping_address__zip,
   updated_at,
-  created_at,
-  _sdc_received_at
+  created_at
+  
 from
   {{ var('source_schema') }}.{{ var('checkouts_table') }}

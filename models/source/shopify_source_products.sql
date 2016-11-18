@@ -8,8 +8,7 @@ select
   handle,
   published_at,
   created_at,
-  updated_at,
-  _sdc_received_at
+  updated_at
 
 from
   {{ var('source_schema') }}.{{ var('products_table') }}
