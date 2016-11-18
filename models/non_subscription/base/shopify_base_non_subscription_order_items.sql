@@ -39,6 +39,6 @@ select
 
 from {{ref('shopify_source_order_items')}} oi
 join {{ref('shopify_source_product_variants')}} pv on pv.id = oi.variant_id
-join {{ref('shopify_base_orders')}} o on o.id = oi.order_id
+join {{ref('shopify_base_non_subscription_orders')}} o on o.id = oi.order_id
 
 where oi.id not in (select distinct order_item_id from {{ref('shopify_subscription_filter')}})

@@ -8,6 +8,9 @@ clean-targets: ["target"]
 test-paths: ["test"]
 
 models:
+  shopify:
+    all:
+      enabled: false
   vars:
     source_schema:        shopify # your schema here
     checkouts_table:      checkouts

@@ -24,6 +24,6 @@ SELECT
        rank() over (partition by o.customer_id order by o.created_at, o.id ASC) AS customer_order_number
 
 FROM {{ref('shopify_source_orders')}} o
-JOIN {{ref('shopify_base_customers')}} c
+JOIN {{ref('shopify_base_subscription_customers')}} c
 
 where o.id in (select distinct order_id from {{ref('shopify_subscription_filter')}})
