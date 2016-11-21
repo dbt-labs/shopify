@@ -26,4 +26,4 @@ SELECT
 FROM {{ref('shopify_source_orders')}} o
 JOIN {{ref('shopify_base_non_subscription_customers')}} c on c.id = o.customer_id
 
-where o.id not in (select distinct order_id from {{ref('shopify_subscription_filter')}})
+where o.id in (select distinct order_id from {{ref('shopify_non_subscription_filter')}})
