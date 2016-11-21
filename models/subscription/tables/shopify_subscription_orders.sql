@@ -39,15 +39,9 @@ SELECT
        datediff(second, o.customer_created_at, o.created_at) as time_since_customer_creation,
        datediff(second, first_order_date, o.created_at) as time_since_first_order,
        datediff(second, po.created_at, o.created_at) as time_since_previous_order,
-       number_of_orders = o.customer_order_number
+       number_of_orders = o.customer_order_number as is_most_recent_order
 
 FROM {{ref('shopify_base_subscription_orders')}} o
 JOIN {{ref('shopify_subscription_order_aggregates')}} oa on oa.order_id = o.id
 JOIN {{ref('shopify_subscription_customers')}} c on c.id = o.customer_id
 LEFT JOIN {{ref('shopify_base_subscription_orders')}} po on po.customer_id = o.customer_id and po.customer_order_number = (o.customer_order_number - 1)
-
-/*time_since_customer_creation,
-time_since_first_order,
-time_since_previous_order,
-is_most_recent_order,
-*/
