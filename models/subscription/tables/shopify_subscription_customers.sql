@@ -7,7 +7,7 @@ select
 	tags,
 	tax_exempt,
 	created_at,
-	updated_at,
+	greatest(c.updated_at, ca.updated_at) as updated_at,
 
 -- Aggregates
 	number_of_orders,

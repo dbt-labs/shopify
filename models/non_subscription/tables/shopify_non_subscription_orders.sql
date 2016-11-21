@@ -15,7 +15,7 @@ SELECT
 --Timestamps
        o.created_at,
        customer_created_at,
-       o.updated_at,
+       greatest(c.updated_at, oa.updated_at, o.updated_at) as updated_at,
 --Numbers
 	o.subtotal_price,
 	o.total_weight,

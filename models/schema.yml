@@ -1,0 +1,56 @@
+shopify_non_subscription_customers:
+  constraints:
+    not_null:
+      - id
+      - created_at
+      - updated_at
+    unique:
+      - id
+
+shopify_non_subscription_orders:
+  constraints:
+    not_null:
+      - id
+      - created_at
+      - updated_at
+    unique:
+      - id
+
+shopify_non_subscription_order_items:
+  constraints:
+    not_null:
+      - id
+      - order_id
+      - created_at
+      - updated_at
+    unique:
+      - id
+
+
+shopify_subscription_customers:
+  constraints:
+    not_null:
+      - id
+      - created_at
+      - updated_at
+    unique:
+      - id
+
+shopify_subscription_orders:
+  constraints:
+    not_null:
+      - id
+      - created_at
+      - updated_at
+    unique:
+      - id
+
+shopify_subscription_order_items:
+  constraints:
+    not_null:
+      - id
+      - order_id
+      - created_at
+      - updated_at
+    unique:
+      - id

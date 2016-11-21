@@ -28,7 +28,7 @@ select
 
 --Order Status
     o.financial_status,
-    o.fulfillment_status
+    o.fulfillment_status,
 
   --Calculated Columns
   	case
