@@ -19,8 +19,8 @@ select
 	items_purchased,
 
 -- Calculated Columns
-	lifetime_revenue / years_active as annual_revenue,
-	items_purchased::float / number_of_orders as items_per_order
+	lifetime_revenue / nullif(years_active,0) as annual_revenue,
+	items_purchased::float / nullif(number_of_orders,0) as items_per_order
 
  from {{ref('shopify_base_non_subscription_customers')}} c
  join {{ref('shopify_non_subscription_customer_aggregates')}} ca on ca.customer_id = c.id
