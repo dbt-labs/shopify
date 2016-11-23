@@ -7,7 +7,7 @@ select
 	tags,
 	tax_exempt,
 	created_at,
-	updated_at,
+	greatest(c.updated_at, ca.updated_at) as updated_at,
 
 -- Aggregates
 	number_of_orders,
@@ -19,8 +19,8 @@ select
 	items_purchased,
 
 -- Calculated Columns
-	lifetime_revenue / years_active as annual_revenue,
-	items_purchased::float / number_of_orders as items_per_order
+	lifetime_revenue / nullif(years_active,0) as annual_revenue,
+	items_purchased::float / nullif(number_of_orders,0) as items_per_order
 
  from {{ref('shopify_base_customers')}} c
  join {{ref('shopify_customer_aggregates')}} ca on ca.customer_id = c.id

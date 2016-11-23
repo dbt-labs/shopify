@@ -18,12 +18,13 @@ SELECT
        greatest(c.updated_at, oa.updated_at, o.updated_at) as updated_at,
        po.created_at as previous_order_created_at,
 --Numbers
-	o.subtotal_price,
-	o.total_weight,
        o.customer_order_number,
 
 --Order Aggregates
        oa.count_of_items,
+       oa.net_sales,
+       oa.gross_sales,
+       oa.weight,
 
 --Customer Aggregates
        number_of_orders,

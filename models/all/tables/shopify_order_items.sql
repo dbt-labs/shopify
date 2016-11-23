@@ -12,20 +12,24 @@ select
     oi.title,
     oi.variant_title,
     oi.sku,
-    oi.subscription_type
+    oi.subscription_type,
   
 --Numbers
     oi.price,
     oi.quantity,
     oi.total_discount,
+    line_item_net_sales
+    line_item_gross_sales,
     oi.weight,
-    oi.weight_unit,
-    oi.subtotal_price as order_subtotal,
-    oi.customer_order_number,
-    
+    o.weight as order_weight,
+    weight_unit,
+    line_item_weight,
+    o.customer_order_number,    
+    o.net_sales as order_net_sales,
+    o.gross_sales as order_gross_sales,
 --Timestamps
     oi.created_at,
-    oi.updated_at,
+    greatest(o.updated_at, oi.updated_at) as updated_at,
 
 --Order Status
     oi.financial_status,

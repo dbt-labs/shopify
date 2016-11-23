@@ -18,10 +18,15 @@ select
     oi.price,
     oi.quantity,
     oi.total_discount,
+    line_item_net_sales
+    line_item_gross_sales,
     oi.weight,
-    oi.weight_unit,
-    o.subtotal_price as order_subtotal,
-    oi.customer_order_number,
+    o.weight as order_weight,
+    weight_unit,
+    line_item_weight,
+    o.customer_order_number, 
+    o.net_sales as order_net_sales,
+    o.gross_sales as order_gross_sales, 
     
 --Timestamps
     oi.created_at,

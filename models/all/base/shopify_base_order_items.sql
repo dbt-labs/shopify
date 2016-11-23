@@ -17,9 +17,11 @@ select
     oi.price,
     oi.quantity,
     oi.total_discount,
+    (oi.price * oi.quantity) - oi.total_discount as line_item_net_sales,
+    (oi.price * oi.quantity) as line_item_gross_sales,
     pv.weight,
     pv.weight_unit,
-    o.subtotal_price as order_subtotal,
+    pv.weight * oi.quantity as line_item_weight,
     o.customer_order_number,
     
 --Timestamps
@@ -28,7 +30,7 @@ select
 
 --Order Status
     o.financial_status,
-    o.fulfillment_status
+    o.fulfillment_status,
 
   --Calculated Columns
   	case
@@ -38,6 +40,5 @@ select
   	end as subscription_type
 
 from {{ref('shopify_source_order_items')}} oi
-join {{ref('shopify_source_product_variants')}} pv on pv.id = oi.variant_id
+left join {{ref('shopify_source_product_variants')}} pv on pv.id = oi.variant_id
 join {{ref('shopify_base_orders')}} o on o.id = oi.order_id
-

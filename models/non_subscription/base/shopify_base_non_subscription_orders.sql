@@ -16,9 +16,6 @@ SELECT
        o.created_at,
        c.created_at as customer_created_at,
        o.updated_at,
---Numbers
-	o.subtotal_price,
-	o.total_weight,
 
 --Calculated Columns
        rank() over (partition by o.customer_id order by o.created_at, o.id ASC) AS customer_order_number
