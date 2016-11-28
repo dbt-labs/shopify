@@ -17,7 +17,7 @@ select
     oi.price,
     oi.quantity,
     oi.total_discount,
-    (oi.price * oi.quantity) - oi.total_discount as line_item_net_sales
+    (oi.price * oi.quantity) - oi.total_discount as line_item_net_sales,
     (oi.price * oi.quantity) as line_item_gross_sales,
     pv.weight,
     pv.weight_unit,
