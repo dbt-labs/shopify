@@ -18,7 +18,7 @@ select
     oi.price,
     oi.quantity,
     oi.total_discount,
-    line_item_net_sales
+    line_item_net_sales,
     line_item_gross_sales,
     oi.weight,
     o.weight as order_weight,
