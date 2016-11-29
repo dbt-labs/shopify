@@ -45,4 +45,4 @@ SELECT
 FROM {{ref('shopify_base_non_subscription_orders')}} o
 JOIN {{ref('shopify_non_subscription_order_aggregates')}} oa on oa.order_id = o.id
 JOIN {{ref('shopify_non_subscription_customers')}} c on c.id = o.customer_id
-LEFT JOIN {{ref('shopify_base_subscription_orders')}} po on po.customer_id = o.customer_id and po.customer_order_number = (o.customer_order_number - 1)
+LEFT JOIN {{ref('shopify_base_non_subscription_orders')}} po on po.customer_id = o.customer_id and po.customer_order_number = (o.customer_order_number - 1)

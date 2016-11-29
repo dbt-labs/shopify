@@ -26,7 +26,6 @@ SELECT
        oa.gross_sales,
        oa.weight,
 
-
 --Customer Aggregates
        number_of_orders,
        average_order_value,
