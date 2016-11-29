@@ -12,7 +12,7 @@ select
   case
     when {{ order_seq_number }} = 1 then 'new'
     else 'repeat'
-  end as new_vs_repeat
+  end as new_vs_repeat,
   case
     when cancelled_at is null then true
     else false
