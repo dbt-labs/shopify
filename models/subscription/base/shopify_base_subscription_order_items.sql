@@ -11,7 +11,7 @@ select
     oi.name,
     oi.title,
     oi.variant_title,
-    pv.sku,
+    oi.sku,
   
 --Numbers
     oi.price,
