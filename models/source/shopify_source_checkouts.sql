@@ -6,7 +6,7 @@ select
   token,
   abandoned_checkout_url,
   name,
-  completed_at,
+  convert_timezone('America/New_York',completed_at) as completed_at,
   currency,
   gateway,
   landing_site,
@@ -50,8 +50,8 @@ select
   shipping_address__province,
   shipping_address__province_code,
   shipping_address__zip,
-  updated_at,
-  created_at
+  convert_timezone('America/New_York',updated_at) as updated_at,
+  convert_timezone('America/New_York',created_at) as created_at
   
 from
   {{ var('source_schema') }}.{{ var('checkouts_table') }}

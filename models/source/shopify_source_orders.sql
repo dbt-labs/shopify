@@ -86,8 +86,8 @@ select
   billing_address__zip,
 
   -- audit
-  created_at,
-  updated_at
+  convert_timezone('America/New_York',created_at) as created_at,
+  convert_timezone('America/New_York',updated_at) as updated_at
 
 from
   {{ var('source_schema') }}.{{ var('orders_table') }}

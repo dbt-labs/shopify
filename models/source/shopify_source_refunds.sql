@@ -5,7 +5,7 @@ select
   user_id,
   restock,
   note,
-  created_at,
+  convert_timezone('America/New_York',created_at) as created_at,
   _sdc_received_at
 
 from

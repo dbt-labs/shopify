@@ -9,8 +9,8 @@ select
   state,
   tags,
   tax_exempt,
-  created_at,
-  updated_at
+  convert_timezone('America/New_York',created_at) as created_at,
+  convert_timezone('America/New_York',updated_at) as updated_at
   
 from
   {{ var('source_schema') }}.{{ var('users_table') }}
