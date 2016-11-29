@@ -14,7 +14,7 @@ select
     else 'repeat'
   end as new_vs_repeat,
   case
-    when cancelled_at is null then true
+    when cancelled_at is not null then true
     else false
   end as cancelled
 from orders
