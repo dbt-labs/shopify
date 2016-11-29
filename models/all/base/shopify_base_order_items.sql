@@ -11,7 +11,7 @@ select
     oi.name,
     oi.title,
     oi.variant_title,
-    oi.sku,
+    coalesce(pv.sku, oi.sku) as sku,
   
 --Numbers
     oi.price,
