@@ -13,6 +13,7 @@ select
     oi.variant_title,
     oi.sku,
     oi.subscription_type,
+    oi.product_type,
   
 --Numbers
     oi.price,

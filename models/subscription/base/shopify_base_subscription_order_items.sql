@@ -12,6 +12,7 @@ select
     oi.title,
     oi.variant_title,
     coalesce(pv.sku, oi.sku) as sku,
+    p.product_type,
   
 --Numbers
     oi.price,
@@ -41,6 +42,7 @@ select
 
 from {{ref('shopify_source_order_items')}} oi
 left join {{ref('shopify_source_product_variants')}} pv on pv.id = oi.variant_id
+left join {{ref('shopify_source_products')}} p on p.id = oi.product_id
 join {{ref('shopify_base_subscription_orders')}} o on o.id = oi.order_id
 
 where oi.id in (select distinct order_item_id from {{ref('shopify_subscription_filter')}})
