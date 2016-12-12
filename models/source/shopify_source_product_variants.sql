@@ -2,7 +2,7 @@ select
 
 id,
 product_id,
-sku,
+upper(sku) as sku,
 title,
 option1,
 option2,

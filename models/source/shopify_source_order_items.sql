@@ -4,7 +4,7 @@ select
   _sdc_source_key_id as order_id,
   product_id,
   variant_id,
-  sku,
+  upper(sku) as sku,
   name,
   title,
   variant_title,

@@ -35,7 +35,7 @@ select
 
   --Calculated Columns
   	case
-    	when oi.title like '%Gift Subscription%' then 'Gift Subscription'
+    	when oi.title like '%Gift%' then 'Gift'
     	when oi.title like '%Subscription%' or oi.title like '%Auto renew%' then 'Subscription'
     	else 'Non-Subscription'
   	end as subscription_type
