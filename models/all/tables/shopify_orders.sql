@@ -6,6 +6,14 @@ SELECT
 
 --Customer Info
        o.email,
+       o.shipping_city,
+       o.shipping_country,
+       o.shipping_country_code,
+       o.shipping_latitude,
+       o.shipping_longitude,
+       o.shipping_state,
+       o.shipping_state_code,
+       o.shipping_zip,
 --Order Status
        o.financial_status,
        o.fulfillment_status,

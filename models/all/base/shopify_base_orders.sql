@@ -6,12 +6,21 @@ SELECT
 
 --Customer Info
        o.email,
+
 --Order Status
        financial_status,
        fulfillment_status,
        processing_method,
        gateway,
-       
+       shipping_city,
+       shipping_country,
+       shipping_country_code,
+       shipping_latitude,
+       shipping_longitude,
+       shipping_state,
+       shipping_state_code,
+       shipping_zip,
+
 --Timestamps
        o.created_at,
        c.created_at as customer_created_at,
