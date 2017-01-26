@@ -94,7 +94,7 @@ select
   updated_at
 
 from
-  {{ var('source_schema') }}.{{ var('orders_table') }}
+  {{ var('orders_table') }}
 
 where
   -- filter test transactions

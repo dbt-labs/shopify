@@ -12,4 +12,4 @@ select
   created_at,
   updated_at
 from
-  {{ var('source_schema') }}.{{ var('customers_table') }}
+  {{ var('customers_table') }}

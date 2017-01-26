@@ -16,4 +16,4 @@ select
   grams
 
 from
-  {{ var('source_schema') }}.{{ var('order_items_table') }}
+  {{ var('order_items_table') }}

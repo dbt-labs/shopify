@@ -53,4 +53,4 @@ select
   updated_at,
   created_at
 from
-  {{ var('source_schema') }}.{{ var('checkouts_table') }}
+  {{ var('checkouts_table') }}

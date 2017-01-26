@@ -6,4 +6,4 @@ select
   type
 
 from
-  {{ var('source_schema') }}.{{ var('discount_codes_table') }}
+  {{ var('discount_codes_table') }}

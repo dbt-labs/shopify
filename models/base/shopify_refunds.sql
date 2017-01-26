@@ -8,4 +8,4 @@ select
   created_at
 
 from
-  {{ var('source_schema') }}.{{ var('refunds_table') }}
+  {{ var('refunds_table') }}

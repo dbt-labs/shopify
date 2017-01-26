@@ -11,4 +11,4 @@ select
   updated_at
 
 from
-  {{ var('source_schema') }}.{{ var('products_table') }}
+  {{ var('products_table') }}

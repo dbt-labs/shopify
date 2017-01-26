@@ -19,7 +19,7 @@ select
   created_at
 
 from
-  {{ var('source_schema') }}.{{ var('transactions_table') }}
+  {{ var('transactions_table') }}
 
 where
   -- filter test transactions
