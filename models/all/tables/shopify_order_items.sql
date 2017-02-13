@@ -6,6 +6,7 @@ select
     oi.product_id,
     oi.variant_id,
     oi.customer_id,
+    oi.order_number,
 
 --Item Info
     oi.name,

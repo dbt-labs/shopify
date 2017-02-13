@@ -3,6 +3,7 @@ SELECT
 --IDs
        o.id,
        o.customer_id,
+       o.order_number,
 
 --Customer Info
        o.email,
