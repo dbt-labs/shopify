@@ -21,6 +21,7 @@ SELECT
        shipping_state,
        shipping_state_code,
        shipping_zip,
+       shipping_price,
 
 --Timestamps
        o.created_at,

@@ -3,7 +3,7 @@
 
 select
   -- ids
-  id,
+  o.id,
   customer__id as customer_id,
   checkout_id,
   cart_token,
@@ -52,6 +52,7 @@ select
   total_price_usd,
   total_tax,
   total_weight,
+  shipping_price,
 
   -- address
   shipping_address__address1,
@@ -90,8 +91,8 @@ select
   convert_timezone('America/New_York',updated_at) as updated_at
 
 from
-  {{ var('source_schema') }}.{{ var('orders_table') }}
-
+  {{ var('source_schema') }}.{{ var('orders_table') }} o
+left join {{ref('shopify_source_shipping')}} s on s.id = o.id
 where
   -- filter test transactions
   test = false

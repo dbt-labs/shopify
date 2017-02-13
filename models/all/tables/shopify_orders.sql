@@ -34,6 +34,7 @@ SELECT
        oa.net_sales,
        oa.gross_sales,
        oa.weight,
+       o.shipping_price,
 
 
 --Customer Aggregates
