@@ -1,0 +1,79 @@
+shopify_orders:
+  constraints:
+    unique:
+      - cart_token
+      - id
+    not_null:
+      - "case when source_name = 'web' then cart_token else 'ok' end"
+      - id
+    relationships:
+      - {from: customer_id, to: shopify_customers, field: id}
+      # strangely, the checkout_id almost never maps to a shopify_checkouts record--shopify doesn't save the checkout record if the order is actually completed.
+      # it's strange that they actually keep this field around because it seems fairly useless.
+
+shopify_checkouts:
+  constraints:
+    unique:
+      - cart_token
+      - id
+    not_null:
+      - "case when source_name = 'web' then cart_token else 'ok' end"
+      - id
+    relationships:
+      - {from: customer_id, to: shopify_customers, field: id}
+
+
+shopify_customers:
+  constraints:
+    unique:
+      - id
+    not_null:
+      - id
+
+shopify_discount_codes:
+  constraints:
+    not_null:
+      - order_id
+    relationships:
+      - {from: order_id, to: shopify_orders, field: id}
+
+
+shopify_transactions:
+  constraints:
+    not_null:
+      - id
+      - order_id
+    unique:
+      - id
+    relationships:
+      - {from: order_id, to: shopify_orders, field: id}
+
+shopify_refunds:
+  constraints:
+    not_null:
+      - id
+      - order_id
+    unique:
+      - id
+    relationships:
+      - {from: order_id, to: shopify_orders, field: id}
+
+
+shopify_products:
+  constraints:
+    not_null:
+      - id
+    unique:
+      - id
+
+
+shopify_order_items:
+  constraints:
+    not_null:
+      - id
+      - order_id
+    unique:
+      - id
+    relationships:
+      - {from: order_id, to: shopify_orders, field: id}
+      - {from: product_id, to: shopify_products, field: id}
