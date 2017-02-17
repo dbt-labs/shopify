@@ -1,3 +1,13 @@
+{{
+  config({
+    "materialized" : "incremental",
+    "unique_key" : "id",
+    "sort" : "created_at",
+    "sql_where" : "updated_at >= (select max(updated_at) from {{this}})"
+    })
+}}
+
+
 select  
     
 --IDs

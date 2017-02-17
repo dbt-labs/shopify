@@ -17,7 +17,7 @@ select
   source_name,
 
   created_at,
-  _sdc_received_at
+  _sdc_received_at as updated_at
 
 from
   {{ var('source_schema') }}.{{ var('transactions_table') }}

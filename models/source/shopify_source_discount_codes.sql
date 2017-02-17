@@ -4,7 +4,8 @@ select
   code,
   amount,
   type,
-  _sdc_received_at
+  _sdc_received_at as updated_at
+
 
 from
   {{ var('source_schema') }}.{{ var('discount_codes_table') }}

@@ -15,7 +15,7 @@ select
   gift_card,
   total_discount,
   grams,
-  _sdc_received_at
+  _sdc_received_at as updated_at
 
 from
   {{ var('source_schema') }}.{{ var('order_items_table') }}

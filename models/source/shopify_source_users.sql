@@ -10,8 +10,8 @@ select
   tags,
   tax_exempt,
   convert_timezone('America/New_York',created_at) as created_at,
-  convert_timezone('America/New_York',updated_at) as updated_at,
+  _sdc_received_at as updated_at,
   accepts_marketing
-  
+
 from
   {{ var('source_schema') }}.{{ var('users_table') }}

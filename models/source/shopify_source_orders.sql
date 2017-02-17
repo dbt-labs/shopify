@@ -88,7 +88,7 @@ select
 
   -- audit
   convert_timezone('America/New_York',created_at) as created_at,
-  convert_timezone('America/New_York',updated_at) as updated_at
+  greatest(o._sdc_received_at, s.updated_at) as updated_at
 
 from
   {{ var('source_schema') }}.{{ var('orders_table') }} o

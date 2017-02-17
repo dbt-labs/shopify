@@ -27,7 +27,7 @@ select
     
 --Timestamps
     o.created_at,
-    oi._sdc_received_at as updated_at,
+    greatest(oi.updated_at, p.updated_at, pv.updated_at, o.updated_at) as updated_at,
 
 --Order Status
     o.financial_status,

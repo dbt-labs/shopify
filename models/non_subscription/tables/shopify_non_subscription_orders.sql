@@ -1,3 +1,12 @@
+{{
+  config({
+    "materialized" : "incremental",
+    "unique_key" : "id",
+    "sort" : "created_at",
+    "sql_where" : "updated_at >= (select max(updated_at) from {{this}})"
+    })
+}}
+
 SELECT 
 
 --IDs
@@ -15,7 +24,7 @@ SELECT
 --Timestamps
        o.created_at,
        o.customer_created_at,
-       greatest(c.updated_at, oa.updated_at, o.updated_at) as updated_at,
+       greatest(c.updated_at, oa.updated_at, o.updated_at, po.updated_at) as updated_at,
        po.created_at as previous_order_created_at,
 --Numbers
        o.customer_order_number,

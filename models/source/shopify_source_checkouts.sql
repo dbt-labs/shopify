@@ -50,8 +50,8 @@ select
   shipping_address__province,
   shipping_address__province_code,
   shipping_address__zip,
-  convert_timezone('America/New_York',updated_at) as updated_at,
-  convert_timezone('America/New_York',created_at) as created_at
+  convert_timezone('America/New_York',created_at) as created_at,
+  _sdc_received_at as updated_at
   
 from
   {{ var('source_schema') }}.{{ var('checkouts_table') }}

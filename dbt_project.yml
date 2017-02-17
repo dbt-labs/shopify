@@ -8,6 +8,24 @@ clean-targets: ["target"]
 test-paths: ["test"]
 
 models:
+  shopify:
+    all:
+        aggregates:
+            materialized: ephemeral
+        base:
+            materialized: ephemeral
+    subscription:
+        aggregates:
+            materialized: ephemeral
+        base:
+            materialized: ephemeral
+    non_subscription:
+        aggregates:
+            materialized: ephemeral
+        base:
+            materialized: ephemeral
+    source:
+        materialized: ephemeral
   vars:
     source_schema:        shopify # your schema here
     checkouts_table:      checkouts
