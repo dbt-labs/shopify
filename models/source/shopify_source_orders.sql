@@ -96,4 +96,3 @@ left join {{ref('shopify_source_shipping')}} s on s.id = o.id
 where
   -- filter test transactions
   test = false
-  and financial_status != 'voided'

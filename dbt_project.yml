@@ -26,6 +26,8 @@ models:
             materialized: ephemeral
     source:
         materialized: ephemeral
+    filters:
+        materialized: ephemeral
   vars:
     source_schema:        shopify # your schema here
     checkouts_table:      checkouts
