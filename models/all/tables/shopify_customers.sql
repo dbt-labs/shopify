@@ -27,6 +27,7 @@ select
 	years_active,
 	lifetime_revenue,
 	items_purchased,
+	codes_used,
 
 -- Calculated Columns
 	lifetime_revenue / nullif(years_active,0) as annual_revenue,
@@ -34,3 +35,4 @@ select
 
  from {{ref('shopify_base_customers')}} c
  join {{ref('shopify_customer_aggregates')}} ca on ca.customer_id = c.id
+ left join {{ref('shopify_customer_discounts')}} cd on cd.customer_id = c.id
