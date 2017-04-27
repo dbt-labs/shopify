@@ -1,7 +1,7 @@
 select
 
   _sdc_source_key_id as order_id,
-  code,
+  lower(code) as code,
   amount,
   type,
   _sdc_received_at as updated_at
