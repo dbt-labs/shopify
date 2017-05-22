@@ -31,6 +31,7 @@ select
   name,
   note,
   tags,
+  gateway,
 
   -- attribution
   browser_ip,
