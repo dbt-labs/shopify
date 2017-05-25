@@ -27,7 +27,7 @@ select
 	years_active,
 	lifetime_revenue,
 	items_purchased,
-	codes_used,
+	substring(codes_used, 0, 1024) as codes_used,
 
 -- Calculated Columns
 	lifetime_revenue / nullif(years_active,0) as annual_revenue,

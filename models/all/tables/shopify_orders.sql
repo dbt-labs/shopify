@@ -44,7 +44,7 @@ SELECT
        oa.gross_sales,
        oa.weight,
        o.shipping_price,
-       od.codes_used,
+       substring(od.codes_used,0,1024) as codes_used,
        od.amount as discounts,
 
 
