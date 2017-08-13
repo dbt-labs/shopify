@@ -36,7 +36,7 @@ select
   browser_ip,
   source_name,
   landing_site,
-  landing_site_ref,
+  --landing_site_ref,
   referring_site,
 
   -- financial
