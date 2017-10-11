@@ -13,7 +13,12 @@ select
   taxable,
   gift_card,
   total_discount,
-  grams
+  grams,
+
+  fulfillable_quantity,
+  fulfillment_service,
+  fulfillment_status
 
 from
   {{ var('order_items_table') }}
+
