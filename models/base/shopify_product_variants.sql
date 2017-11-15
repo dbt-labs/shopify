@@ -15,9 +15,8 @@ select
   taxable,
   title,
   weight,
-  weight_unit,
-  image_id,
-  inventory_item_id
+  weight_unit
+  
   
 from
   {{ var('product_variants_table') }}
