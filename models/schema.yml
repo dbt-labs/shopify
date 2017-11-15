@@ -66,6 +66,12 @@ shopify_products:
     unique:
       - id
 
+shopify_product_variants:
+  contraints:
+    not_null:
+      - id
+    unique:
+      - id
 
 shopify_order_items:
   constraints:
