@@ -19,4 +19,4 @@ select
   
   
 from
-  {{ var('product_variants_table') }}
+  {{ var('products_variants_table') }}
