@@ -66,7 +66,7 @@ shopify_products:
     unique:
       - id
 
-shopify_product_variants:
+shopify_products_variants:
   contraints:
     not_null:
       - id
