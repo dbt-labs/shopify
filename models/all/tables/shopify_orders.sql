@@ -41,7 +41,7 @@ SELECT
 --Order Aggregates
        oa.count_of_items,
        oa.net_sales,
-       o.subtotal_price as gross_sales,
+       oa.gross_sales,
        oa.weight,
        o.shipping_price,
        substring(od.codes_used,0,1024) as codes_used,
