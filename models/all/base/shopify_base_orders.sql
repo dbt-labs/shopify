@@ -22,7 +22,8 @@ SELECT
        shipping_state_code,
        shipping_zip,
        shipping_price,
-
+       subtotal_price,
+       
 --Timestamps
        o.created_at,
        c.created_at as customer_created_at,
