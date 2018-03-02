@@ -8,6 +8,7 @@ select
   name,
   title,
   variant_title,
+  fulfillment_status,
   vendor,
   quantity,
   price,
