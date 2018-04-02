@@ -38,4 +38,5 @@ models:
     refunds_table:        order_refunds
     discount_codes_table: orders__discount_codes
     order_items_table:    orders__line_items
+    order_items_properties_table:   orders__line_items__properties
     product_variants_table: products__variants
