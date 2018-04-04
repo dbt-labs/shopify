@@ -7,7 +7,7 @@ select
     oi.variant_id,
     o.customer_id,
     o.order_number,
-    o.line_item_number,
+    oi.line_item_number,
 
 --Item Info
     oi.name,
