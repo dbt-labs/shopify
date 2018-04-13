@@ -5,6 +5,7 @@ select
   email,
   verified_email,
   default_address__id as default_address_id,
+  accepts_marketing,
   note,
   state,
   tags,
