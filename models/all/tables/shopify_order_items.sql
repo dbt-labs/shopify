@@ -41,6 +41,7 @@ select
     o.gross_sales as order_gross_sales,
 --Timestamps
     oi.created_at,
+    oi.cancelled_at,
     greatest(o.updated_at, oi.updated_at) as updated_at,
 
 --Order Status

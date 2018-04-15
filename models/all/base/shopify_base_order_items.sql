@@ -29,6 +29,7 @@ select
     
 --Timestamps
     o.created_at,
+    o.cancelled_at,
     greatest(oi.updated_at, p.updated_at, pv.updated_at, o.updated_at) as updated_at,
 
 --Order Status

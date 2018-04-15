@@ -33,6 +33,7 @@ SELECT
 --Timestamps
        o.created_at,
        o.customer_created_at,
+       o.cancelled_at,
        greatest(c.updated_at, oa.updated_at, o.updated_at) as updated_at,
        po.created_at as previous_order_created_at,
 --Numbers
