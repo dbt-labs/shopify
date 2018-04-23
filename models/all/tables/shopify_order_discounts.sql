@@ -1,6 +1,7 @@
 select
 
   order_id,
+  discount_number,
   code,
   amount,
   type,
