@@ -55,8 +55,8 @@ select
   shipping_price,
 
   -- address
-  shipping_address__address1,
-  shipping_address__address2,
+  shipping_address__address1 as shipping_address_1,
+  shipping_address__address2 as shipping_address_2,
   shipping_address__city as shipping_city,
   shipping_address__company,
   shipping_address__country as shipping_country,
@@ -65,7 +65,7 @@ select
   shipping_address__last_name,
   shipping_address__latitude as shipping_latitude,
   shipping_address__longitude as shipping_longitude,
-  shipping_address__name,
+  shipping_address__name as shipping_name,
   shipping_address__phone,
   shipping_address__province as shipping_state,
   shipping_address__province_code as shipping_state_code,

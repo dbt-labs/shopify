@@ -9,10 +9,19 @@ SELECT
        o.email,
 
 --Order Status
+       case source_name
+              when 'web' then 'web'
+              when '294517' then 'recharge'
+              when 'Giftwizard' then 'giftwizard'
+              else 'other'
+       end as source,
        financial_status,
        fulfillment_status,
        processing_method,
        gateway,
+       shipping_address_1,
+       shipping_address_2,
+       shipping_name,
        shipping_city,
        shipping_country,
        shipping_country_code,

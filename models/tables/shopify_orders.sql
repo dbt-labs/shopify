@@ -1,12 +1,3 @@
-{{
-  config({
-    "materialized" : "incremental",
-    "unique_key" : "id",
-    "sort" : "created_at",
-    "sql_where" : "updated_at >= (select max(updated_at) from {{this}})"
-    })
-}}
-
 SELECT 
 
 --IDs
@@ -16,6 +7,9 @@ SELECT
 
 --Customer Info
        o.email,
+       o.shipping_address_1,
+       o.shipping_address_2,
+       o.shipping_name,
        o.shipping_city,
        o.shipping_country,
        o.shipping_country_code,
