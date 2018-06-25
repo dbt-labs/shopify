@@ -1,13 +1,3 @@
-{{
-  config({
-    "materialized" : "incremental",
-    "unique_key" : "id",
-    "sort" : "created_at",
-    "sql_where" : "updated_at >= (select max(updated_at) from {{this}})"
-    })
-}}
-
-
 select  
     
 --IDs
@@ -16,6 +6,7 @@ select
     oi.product_id,
     oi.variant_id,
     oi.customer_id,
+    oi.order_number,
 
 --Item Info
     oi.name,
@@ -24,6 +15,7 @@ select
     oi.sku,
     oi.subscription_type,
     oi.product_type,
+
   
 --Numbers
     oi.price,
@@ -35,12 +27,12 @@ select
     o.weight as order_weight,
     weight_unit,
     line_item_weight,
-    o.customer_order_number, 
+    o.customer_order_number,    
     o.net_sales as order_net_sales,
-    o.gross_sales as order_gross_sales, 
-    
+    o.gross_sales as order_gross_sales,
 --Timestamps
     oi.created_at,
+    oi.cancelled_at,
     greatest(o.updated_at, oi.updated_at) as updated_at,
 
 --Order Status
@@ -50,5 +42,5 @@ select
 --Order Aggregates
     
 
-FROM {{ref('shopify_base_non_subscription_order_items')}} oi
-JOIN {{ref('shopify_non_subscription_orders')}} o on oi.order_id = o.id
+FROM {{ref('shopify_base_order_items')}} oi
+JOIN {{ref('shopify_orders')}} o on oi.order_id = o.id

@@ -36,19 +36,19 @@ select
     o.financial_status,
     oi.fulfillment_status,
 
---Order Item Properties
-subid.property_value as subscription_id,
-sif.property_value as subscription_shipping_frequency,
-siut.property_value as subscription_shipping_frequency_unit,
-cif.property_value as subscription_charge_frequency,
-ciut.property_value as subscription_charge_frequency_unit,
+    --Order Item Properties
+    subid.property_value as subscription_id,
+    sif.property_value as subscription_shipping_frequency,
+    siut.property_value as subscription_shipping_frequency_unit,
+    cif.property_value as subscription_charge_frequency,
+    ciut.property_value as subscription_charge_frequency_unit,
 
-  --Calculated Columns
-  	case
-    	when cif.property_value is not null then 'Gift Subscription'
-    	when sif.property_value is not null then 'Subscription'
-    	else 'Non-Subscription'
-  	end as subscription_type
+      --Calculated Columns
+    case
+        when cif.property_value is not null then 'Gift Subscription'
+        when sif.property_value is not null then 'Subscription'
+        else 'Non-Subscription'
+    end as subscription_type
 
 from {{ref('shopify_source_order_items')}} oi
 left join {{ref('shopify_source_products')}} p on p.id = oi.product_id
