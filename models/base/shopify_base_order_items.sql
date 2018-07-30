@@ -26,6 +26,8 @@ select
     pv.weight_unit,
     pv.weight * oi.quantity as line_item_weight,
     o.customer_order_number,
+    ri.refunded_quantity,
+    ri.refunded_subtotal,
     
 --Timestamps
     o.created_at,
@@ -53,6 +55,7 @@ select
 from {{ref('shopify_source_order_items')}} oi
 left join {{ref('shopify_source_products')}} p on p.id = oi.product_id
 left join {{ref('shopify_source_product_variants')}} pv on pv.id = oi.variant_id
+left join {{ref('shopify_source_refund_items')}} ri on oi.id = ri.line_item_id
 join {{ref('shopify_base_orders')}} o on o.id = oi.order_id
 left join {{ref('shopify_source_order_items_properties')}} subid 
         on subid.order_id = oi.order_id 
