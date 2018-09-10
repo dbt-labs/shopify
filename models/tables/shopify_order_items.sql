@@ -27,6 +27,8 @@ select
     o.weight as order_weight,
     weight_unit,
     line_item_weight,
+    oi.refunded_quantity,
+    oi.refunded_subtotal,
     o.customer_order_number,    
     o.net_sales as order_net_sales,
     o.gross_sales as order_gross_sales,
