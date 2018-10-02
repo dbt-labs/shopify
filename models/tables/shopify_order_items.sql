@@ -13,7 +13,6 @@ select
     oi.title,
     oi.variant_title,
     oi.sku,
-    oi.subscription_type,
     oi.product_type,
 
   
@@ -39,7 +38,7 @@ select
 
 --Order Status
     o.financial_status,
-    oi.fulfillment_status
+    oi.fulfillment_status,
 
 --Calculated Columns
     case
