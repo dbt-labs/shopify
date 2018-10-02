@@ -5,8 +5,8 @@ select
     oi.order_id,
     oi.product_id,
     oi.variant_id,
-    oi.customer_id,
-    oi.order_number,
+    o.customer_id,
+    o.order_number,
 
 --Item Info
     oi.name,
@@ -33,13 +33,19 @@ select
     o.net_sales as order_net_sales,
     o.gross_sales as order_gross_sales,
 --Timestamps
-    oi.created_at,
-    oi.cancelled_at,
+    o.created_at,
+    o.cancelled_at,
     greatest(o.updated_at, oi.updated_at) as updated_at,
 
 --Order Status
-    oi.financial_status,
+    o.financial_status,
     oi.fulfillment_status
+
+--Calculated Columns
+    case
+        when o.source = 'recharge' then 'Subscription'
+        else 'Non-Subscription'
+    end as subscription_type
 
 --Order Aggregates
     

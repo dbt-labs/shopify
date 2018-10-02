@@ -5,8 +5,6 @@ select
     oi.order_id,
     oi.product_id,
     oi.variant_id,
-    o.customer_id,
-    o.order_number,
     oi.line_item_number,
 
 --Item Info
@@ -25,28 +23,16 @@ select
     pv.weight,
     pv.weight_unit,
     pv.weight * oi.quantity as line_item_weight,
-    o.customer_order_number,
     ri.refunded_quantity,
     ri.refunded_subtotal,
     
 --Timestamps
-    o.created_at,
-    o.cancelled_at,
-    greatest(oi.updated_at, p.updated_at, pv.updated_at, o.updated_at) as updated_at,
+    greatest(oi.updated_at, p.updated_at, pv.updated_at) as updated_at,
 
 --Order Status
-    o.financial_status,
-    oi.fulfillment_status,
-
-
-      --Calculated Columns
-    case
-        when o.source = 'recharge' then 'Subscription'
-        else 'Non-Subscription'
-    end as subscription_type
+    oi.fulfillment_status
 
 from {{ref('shopify_source_order_items')}} oi
 left join {{ref('shopify_source_products')}} p on p.id = oi.product_id
 left join {{ref('shopify_source_product_variants')}} pv on pv.id = oi.variant_id
 left join {{ref('shopify_source_refund_items')}} ri on oi.id = ri.line_item_id
-join {{ref('shopify_base_orders')}} o on o.id = oi.order_id
