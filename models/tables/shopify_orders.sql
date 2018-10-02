@@ -42,17 +42,6 @@ SELECT
        substring(od.codes_used,0,1024) as codes_used,
        od.amount as discounts,
 
-
---Customer Aggregates
-       number_of_orders,
-       average_order_value,
-       first_order_date,
-       last_order_date,
-       years_active,
-       lifetime_revenue,
-       items_purchased,
-       annual_revenue,
-
 --Calculated Columns
        datediff(second, o.customer_created_at, o.created_at) as time_since_customer_creation,
        datediff(second, first_order_date, o.created_at) as time_since_first_order,
