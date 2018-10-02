@@ -23,7 +23,7 @@ SELECT
        o.fulfillment_status,
        o.processing_method,
        o.gateway,
-       
+       o.source,
 --Timestamps
        o.created_at,
        c.created_at as customer_created_at,
@@ -43,8 +43,7 @@ SELECT
        od.amount as discounts,
 
 --Calculated Columns
-       datediff(second, po.created_at, o.created_at) as time_since_previous_order,
-       rank() over (partition by o.customer_id order by o.created_at, o.id ASC) AS customer_order_number
+       datediff(second, po.created_at, o.created_at) as time_since_previous_order
 
 FROM {{ref('shopify_base_orders')}} o
 JOIN {{ref('shopify_order_aggregates')}} oa on oa.order_id = o.id

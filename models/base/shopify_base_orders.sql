@@ -35,6 +35,9 @@ SELECT
 --Timestamps
        created_at,
        updated_at,
-       cancelled_at
+       cancelled_at,
+
+--Calculated Fields
+       rank() over (partition by customer_id order by created_at, id ASC) AS customer_order_number
 
 FROM {{ref('shopify_source_orders')}} o
