@@ -1,12 +1,12 @@
 SELECT 
 
 --IDs
-       o.id,
-       o.customer_id,
-       o.order_number,
+       id,
+       customer_id,
+       order_number,
 
 --Customer Info
-       o.email,
+       email,
 
 --Order Status
        case source_name
@@ -33,13 +33,8 @@ SELECT
        shipping_price,
 
 --Timestamps
-       o.created_at,
-       c.created_at as customer_created_at,
-       greatest(o.updated_at, c.updated_at) as updated_at,
-       cancelled_at,
-
---Calculated Columns
-       rank() over (partition by o.customer_id order by o.created_at, o.id ASC) AS customer_order_number
+       created_at,
+       updated_at,
+       cancelled_at
 
 FROM {{ref('shopify_source_orders')}} o
-JOIN {{ref('shopify_base_customers')}} c on c.id = o.customer_id

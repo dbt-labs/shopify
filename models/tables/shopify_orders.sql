@@ -26,9 +26,9 @@ SELECT
        
 --Timestamps
        o.created_at,
-       o.customer_created_at,
+       c.created_at as customer_created_at,
        o.cancelled_at,
-       greatest(c.updated_at, oa.updated_at, o.updated_at) as updated_at,
+       greatest(oa.updated_at, o.updated_at, c.updated_at) as updated_at,
        po.created_at as previous_order_created_at,
 --Numbers
        o.customer_order_number,
@@ -43,13 +43,11 @@ SELECT
        od.amount as discounts,
 
 --Calculated Columns
-       datediff(second, o.customer_created_at, o.created_at) as time_since_customer_creation,
-       datediff(second, first_order_date, o.created_at) as time_since_first_order,
        datediff(second, po.created_at, o.created_at) as time_since_previous_order,
-       number_of_orders = o.customer_order_number as is_most_recent_order
+       rank() over (partition by o.customer_id order by o.created_at, o.id ASC) AS customer_order_number
 
 FROM {{ref('shopify_base_orders')}} o
 JOIN {{ref('shopify_order_aggregates')}} oa on oa.order_id = o.id
-JOIN {{ref('shopify_customers')}} c on c.id = o.customer_id
+JOIN {{ref('shopify_base_customers')}} c on c.id = o.customer_id
 LEFT JOIN {{ref('shopify_base_orders')}} po on po.customer_id = o.customer_id and po.customer_order_number = (o.customer_order_number - 1)
 LEFT JOIN {{ref('shopify_order_discounts')}} od on od.order_id = o.id
