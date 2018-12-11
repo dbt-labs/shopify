@@ -21,6 +21,7 @@ SELECT
 --Order Status
        o.financial_status,
        o.fulfillment_status,
+       o.order_status_url,
        o.processing_method,
        o.gateway,
        o.source,

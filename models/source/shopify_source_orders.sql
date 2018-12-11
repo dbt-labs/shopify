@@ -18,6 +18,7 @@ select
   financial_status,
   fulfillment_status,
   confirmed,
+  order_status_url,
 
   -- cancellation information
   cancel_reason,

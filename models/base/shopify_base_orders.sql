@@ -17,6 +17,7 @@ SELECT
        end as source,
        financial_status,
        fulfillment_status,
+       order_status_url,
        processing_method,
        gateway,
        shipping_address_1,
