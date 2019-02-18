@@ -2,7 +2,7 @@
 
 with orders as (
 
-  select * from {{ref('shopify_orders')}}
+  select * from {{ref('shopify_orders_base')}}
 
 )
 
