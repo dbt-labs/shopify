@@ -16,6 +16,7 @@
         customer__id as customer_id,
         checkout_id,
         checkout_token,
+        cart_token,
         token,
         
         -- customer attributes
@@ -104,6 +105,7 @@
         customer:id as customer_id,
         checkout_id,
         checkout_token,
+        cart_token,
         token,
         
         -- customer attributes

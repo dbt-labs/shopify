@@ -1,0 +1,123 @@
+version: 2
+
+models:
+
+- name: shopify_orders_base
+  description: >
+    Shopify API docs [here](https://help.shopify.com/api/reference/order).
+  columns:
+  - name: order_id
+    tests:
+    - not_null
+    - unique
+  - name: customer_id
+    tests:
+    - relationships:
+        field: customer_id
+        to: stg_shopify_customers
+    
+- name: stg_shopify_checkouts
+  description: >
+    Shopify API docs [here](https://help.shopify.com/en/api/reference/orders/abandoned-checkouts).
+  columns:
+  - name: checkout_id
+    tests:
+    - not_null
+    - unique
+  - name: customer_id
+    tests:
+    - relationships:
+        field: customer_id
+        to: stg_shopify_customers
+    
+- name: stg_shopify_customers
+  description: >
+    Shopify API docs [here](https://help.shopify.com/en/api/reference/customers/customer).
+  columns:
+  - name: customer_id
+    tests:
+    - not_null
+    - unique
+    
+- name: stg_shopify_discount_codes
+  description: >
+    Shopify API docs [here](https://help.shopify.com/en/api/reference/discounts).
+  columns:
+  - name: order_id
+    tests:
+    - not_null
+    - relationships:
+        field: order_id
+        to: shopify_orders_base
+        
+- name: stg_shopify_transactions
+  description: >
+    Shopify API docs [here](https://help.shopify.com/en/api/reference/orders/transaction).
+  columns:
+  - name: transaction_id
+    tests:
+    - not_null
+    - unique
+  - name: order_id
+    tests:
+    - not_null
+    - relationships:
+        field: order_id
+        to: shopify_orders_base
+        
+- name: stg_shopify_refunds
+  description: >
+    Shopify API docs [here](https://help.shopify.com/en/api/reference/orders/refund).
+    We use the json `refund` field from the `orders` table instead of using the 
+    `order_refunds` table simply because the `order_refunds` table in Stitch syncs 
+    slowly. This reduces the number of tables we need to select from and it provides
+    all of the desired attributes.
+  columns:
+  - name: refund_id
+    tests:
+    - not_null
+    - unique
+  - name: order_id
+    tests:
+    - not_null
+    - relationships:
+        field: order_id
+        to: shopify_orders_base
+        
+- name: stg_shopify_products
+  description: >
+    Shopify API docs [here](https://help.shopify.com/en/api/reference/products/product).
+  columns:
+  - name: product_id
+    tests:
+    - not_null
+    - unique
+
+- name: stg_shopify_product_variants
+  description: >
+    Shopify API docs [here](https://help.shopify.com/en/api/reference/products/product-variant).
+  columns:
+  - name: variant_id
+    tests:
+    - not_null
+    - unique
+    
+- name: stg_shopify_order_items
+  description: >
+    Shopify API docs [here](https://help.shopify.com/api/reference/order).
+  columns:
+  - name: order_item_id
+    tests:
+    - not_null
+    - unique
+  - name: order_id
+    tests:
+    - not_null
+    - relationships:
+        field: order_id
+        to: shopify_orders_base
+  - name: product_id
+    tests:
+    - relationships:
+        field: product_id
+        to: stg_shopify_products

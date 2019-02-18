@@ -146,6 +146,7 @@ final as (
 )
 
 select * from final
+where refund_id is not null
 
 
 {% endmacro %}
