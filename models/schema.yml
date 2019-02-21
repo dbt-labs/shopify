@@ -1,85 +1,105 @@
-shopify_orders:
-  constraints:
-    unique:
-      - cart_token
-      - id
-    not_null:
-      - "case when source_name = 'web' then cart_token else 'ok' end"
-      - id
-    relationships:
-      - {from: customer_id, to: shopify_customers, field: id}
-      # strangely, the checkout_id almost never maps to a shopify_checkouts record--shopify doesn't save the checkout record if the order is actually completed.
-      # it's strange that they actually keep this field around because it seems fairly useless.
+version: 2
 
-shopify_checkouts:
-  constraints:
-    unique:
-      - cart_token
-      - id
-    not_null:
-      - "case when source_name = 'web' then cart_token else 'ok' end"
-      - id
-    relationships:
-      - {from: customer_id, to: shopify_customers, field: id}
+models:
 
+  - name: shopify_orders
+    columns:
+    - name: cart_token
+      tests:
+      - unique
 
-shopify_customers:
-  constraints:
-    unique:
-      - id
-    not_null:
-      - id
+    - name: customer_id
+      tests:
+      - relationships:
+          field: id
+          to: ref('shopify_customers')
 
-shopify_discount_codes:
-  constraints:
-    not_null:
-      - order_id
-    relationships:
-      - {from: order_id, to: shopify_orders, field: id}
+    - name: id
+      tests:
+      - not_null
+      - unique
 
+  - name: shopify_checkouts
+    columns:
+    - name: cart_token
+      tests:
+      - unique
 
-shopify_transactions:
-  constraints:
-    not_null:
-      - id
-      - order_id
-    unique:
-      - id
-    relationships:
-      - {from: order_id, to: shopify_orders, field: id}
+    - name: customer_id
+      tests:
+      - relationships:
+          field: id
+          to: ref('shopify_customers')
+    - name: id
+      tests:
+      - not_null
+      - unique
 
-shopify_refunds:
-  constraints:
-    not_null:
-      - id
-      - order_id
-    unique:
-      - id
-    relationships:
-      - {from: order_id, to: shopify_orders, field: id}
+  - name: shopify_customers
+    columns:
+    - name: id
+      tests:
+      - not_null
+      - unique
 
+  - name: shopify_discount_codes
+    columns:
+    - name: order_id
+      tests:
+      - not_null
+      - relationships:
+          field: id
+          to: ref('shopify_orders')
 
-shopify_products:
-  constraints:
-    not_null:
-      - id
-    unique:
-      - id
+  - name: shopify_transactions
+    columns:
+    - name: id
+      tests:
+      - not_null
+      - unique
 
-shopify_products_variants:
-  contraints:
-    not_null:
-      - id
-    unique:
-      - id
+    - name: order_id
+      tests:
+      - not_null
+      - relationships:
+          field: id
+          to: ref('shopify_orders')
 
-shopify_order_items:
-  constraints:
-    not_null:
-      - id
-      - order_id
-    unique:
-      - id
-    relationships:
-      - {from: order_id, to: shopify_orders, field: id}
-      - {from: product_id, to: shopify_products, field: id}
+  - name: shopify_refunds
+    columns:
+    - name: id
+      tests:
+      - not_null
+      - unique
+    - name: order_id
+      tests:
+      - not_null
+      - relationships:
+          field: id
+          to: ref('shopify_orders')
+
+  - name: shopify_products
+    columns:
+    - name: id
+      tests:
+      - not_null
+      - unique
+
+  - name: shopify_order_items
+    columns:
+    - name: id
+      tests:
+      - not_null
+      - unique
+    - name: order_id
+      tests:
+      - not_null
+      - relationships:
+          field: id
+          to: ref('shopify_orders')
+
+    - name: product_id
+      tests:
+      - relationships:
+          field: id
+          to: ref('shopify_products')
