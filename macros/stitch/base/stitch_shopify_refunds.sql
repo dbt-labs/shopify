@@ -39,7 +39,7 @@ joined as (
         refunds.processed_at::timestamp as processed_at
     from adjustments
     left join refunds
-        on refunds._sdc_source_key_id = adjustments._sdc_source_key_id
+        on refunds.id = adjustments.refund_id
     
 ),
 
