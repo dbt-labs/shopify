@@ -14,7 +14,7 @@ models:
     tests:
     - relationships:
         field: customer_id
-        to: stg_shopify_customers
+        to: ref('stg_shopify_customers')
     
 - name: stg_shopify_checkouts
   description: >
@@ -28,7 +28,7 @@ models:
     tests:
     - relationships:
         field: customer_id
-        to: stg_shopify_customers
+        to: ref('stg_shopify_customers')
     
 - name: stg_shopify_customers
   description: >
@@ -48,7 +48,7 @@ models:
     - not_null
     - relationships:
         field: order_id
-        to: shopify_orders_base
+        to: ref('shopify_orders_base')
         
 - name: stg_shopify_transactions
   description: >
@@ -63,7 +63,7 @@ models:
     - not_null
     - relationships:
         field: order_id
-        to: shopify_orders_base
+        to: ref('shopify_orders_base')
         
 - name: stg_shopify_refunds
   description: >
@@ -82,7 +82,7 @@ models:
     - not_null
     - relationships:
         field: order_id
-        to: shopify_orders_base
+        to: ref('shopify_orders_base')
         
 - name: stg_shopify_products
   description: >
@@ -115,9 +115,9 @@ models:
     - not_null
     - relationships:
         field: order_id
-        to: shopify_orders_base
+        to: ref('shopify_orders_base')
   - name: product_id
     tests:
     - relationships:
         field: product_id
-        to: stg_shopify_products
+        to: ref('stg_shopify_products')
