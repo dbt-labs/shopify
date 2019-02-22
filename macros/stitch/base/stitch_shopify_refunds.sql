@@ -56,7 +56,7 @@ adjustments_flattened as (
         sum(tax_amount) {{window_clause}} as refund_tax_amount,
         processed_at as refund_processed_at
 
-    from order_source
+    from joined
         
 ),
 
