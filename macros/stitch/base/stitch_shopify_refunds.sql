@@ -47,7 +47,7 @@ adjustments_flattened as (
 
     select distinct
         
-        id as refund_id,
+        refund_id,
         _sdc_source_key_id as order_id,
         sum(case when reason ilike '%ship%' then amount else 0 end) 
             {{window_clause}} as refund_shipping_amount,

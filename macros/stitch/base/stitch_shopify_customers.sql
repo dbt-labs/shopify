@@ -22,7 +22,6 @@
         tax_exempt,
         
         default_address__id as default_address_id,
-        note,
         
         --dates
         created_at,
@@ -51,7 +50,6 @@
         tax_exempt,
         
         default_address:id::number(38,6) as default_address_id,
-        note,
         
         --dates
         created_at,
