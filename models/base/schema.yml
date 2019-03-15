@@ -2,7 +2,7 @@ version: 2
 
 models:
 
-- name: shopify_orders_base
+- name: base_shopify_orders
   description: >
     Shopify API docs [here](https://help.shopify.com/api/reference/order).
   columns:
@@ -15,6 +15,14 @@ models:
     - relationships:
         field: customer_id
         to: ref('stg_shopify_customers')
+  - name: total_price
+    description: >
+      total_line_items_price + discounts + shipping + (when currency = USD) tax
+  - name: total_price_usd
+    description: >
+      total_price converted from currency value to USD. Note: this is the ONLY
+      revenue component that is converted (tax, discount, shipping are all still
+      in local currency)
     
 - name: stg_shopify_checkouts
   description: >

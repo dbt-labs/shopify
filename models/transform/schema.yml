@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_shopify_orders
+    description: >
+      This model joins together discount codes with orders and calculates some
+      userful revenue fields. 
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+          
+  - name: fct_shopify_sales
+    description: >
+      In Shopify's UI, there is a commonly used report ["Sales"](https://help.shopify.com/en/manual/reports-and-analytics/shopify-reports/report-types/sales-report) that you cannot build solely off the `orders` table. This is because the refund 
+      amount, refund shipping, and refund tax typically occur on a separate day than the 
+      order date. The purpose of this model is to aid in auditing.
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
