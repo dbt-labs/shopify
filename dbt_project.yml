@@ -16,6 +16,7 @@ models:
       orders_table:             #orders
       transactions_table:       #transactions
       products_table:           #products
+      #the below are just needed for Redshift
       refunds_table:            #orders__refunds
       refund_items_table:       #orders__refunds__refund_line_items
       refund_adjustments_table: #orders__refunds__order_adjustments
