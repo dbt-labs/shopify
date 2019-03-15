@@ -41,7 +41,8 @@
         published_scope,
         tags,
         vendor,
-
+        
+        variants,
         body_html,
         image:src::string as image_url,
 

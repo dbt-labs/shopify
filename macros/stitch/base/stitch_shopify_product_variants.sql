@@ -42,7 +42,7 @@
     select
 
         f.value:id::number(38,6) as variant_id,
-        id as product_id,
+        product_id,
         f.value:inventory_item_id::number(38,6) as inventory_item_id,
      
         f.value:barcode::varchar(256) as barcode,
@@ -65,7 +65,7 @@
         created_at,
         updated_at
 
-    from {{ var('products_variants_table') }},
+    from {{ ref('stg_shopify_products') }},
     lateral flatten (input => variants) f
 
 {% endmacro %}

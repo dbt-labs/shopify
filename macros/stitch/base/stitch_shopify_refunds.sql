@@ -90,7 +90,7 @@ select * from final
 
 with order_source as (
 
-    select * from {{ var('refunds_table')}}
+    select * from {{ ref('base_shopify_orders')}}
     
 ),
 

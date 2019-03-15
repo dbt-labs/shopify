@@ -46,7 +46,7 @@
 
     with orders as (
 
-        select * from {{ var('order_items_table')}}
+        select * from {{ ref('base_shopify_orders')}}
 
     ),
 

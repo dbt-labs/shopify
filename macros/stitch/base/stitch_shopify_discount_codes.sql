@@ -23,7 +23,7 @@
 
     with order_source_base as (
 
-        select * from {{ var('discount_codes_table')}}
+        select * from {{ ref('base_shopify_orders')}}
 
     ),
 

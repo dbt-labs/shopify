@@ -24,7 +24,7 @@
 
     with shopify_order_source as (
 
-        select * from {{ var('refund_items_table')}}
+        select * from {{ ref('base_shopify_orders')}}
 
     ),
 
