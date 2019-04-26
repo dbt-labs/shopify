@@ -54,6 +54,7 @@ models:
   - name: order_id
     tests:
     - not_null
+    - unique
     - relationships:
         field: order_id
         to: ref('base_shopify_orders')

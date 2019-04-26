@@ -52,25 +52,10 @@
         
         --addresses
         location_id,
-        nullif(shipping_address__city::varchar, '') as shipping_city,
-        nullif(shipping_address__province::varchar, '') 
-            as shipping_province,
-        nullif(shipping_address__province_code::varchar, '') 
-            as shipping_province_code,
-        nullif(shipping_address__country::varchar, '') as shipping_country,
-        nullif(shipping_address__country_code::varchar, '') 
-            as shipping_country_code,
-        nullif(shipping_address__zip::varchar, '') as shipping_zip_code,
-        nullif(shipping_address__longitude, '') as shipping_longitude,
-        nullif(shipping_address__latitude, '') as shipping_latitude,
-        nullif(billing_address__city::varchar, '') as billing_city,
-        nullif(billing_address__province::varchar, '') as billing_province,
-        nullif(billing_address__province_code::varchar, '') 
-            as billing_province_code,
-        nullif(billing_address__country::varchar, '') as billing_country,
-        nullif(billing_address__country_code::varchar, '') 
-            as billing_country_code,
-        nullif(billing_address__zip::varchar, '') as billing_zip_code,
+        
+        {{ stitch_shipping_fields() }}
+        
+        {{ stitch_billing_fields() }}
         
         -- browser attributes
         referring_site,
@@ -115,7 +100,7 @@
         confirmed,
         
         -- order attributes
-        number as "number",
+        number,
         order_number,
         currency,
         presentment_currency,
