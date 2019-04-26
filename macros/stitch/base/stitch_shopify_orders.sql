@@ -20,7 +20,7 @@
         token,
         
         -- customer attributes
-        email,
+        lower(email) as email,
         contact_email,
         buyer_accepts_marketing,
         confirmed,
@@ -52,25 +52,25 @@
         
         --addresses
         location_id,
-        nullif(lower(shipping_address__city::varchar), '') as shipping_city,
-        nullif(lower(shipping_address__province::varchar), '') 
+        nullif(shipping_address__city::varchar, '') as shipping_city,
+        nullif(shipping_address__province::varchar, '') 
             as shipping_province,
-        nullif(lower(shipping_address__province_code::varchar), '') 
+        nullif(shipping_address__province_code::varchar, '') 
             as shipping_province_code,
-        nullif(lower(shipping_address__country::varchar), '') as shipping_country,
-        nullif(lower(shipping_address__country_code::varchar), '') 
+        nullif(shipping_address__country::varchar, '') as shipping_country,
+        nullif(shipping_address__country_code::varchar, '') 
             as shipping_country_code,
-        nullif(lower(shipping_address__zip::varchar), '') as shipping_zip_code,
+        nullif(shipping_address__zip::varchar, '') as shipping_zip_code,
         nullif(shipping_address__longitude, '') as shipping_longitude,
         nullif(shipping_address__latitude, '') as shipping_latitude,
-        nullif(lower(billing_address__city::varchar), '') as billing_city,
-        nullif(lower(billing_address__province::varchar), '') as billing_province,
-        nullif(lower(billing_address__province_code::varchar), '') 
+        nullif(billing_address__city::varchar, '') as billing_city,
+        nullif(billing_address__province::varchar, '') as billing_province,
+        nullif(billing_address__province_code::varchar, '') 
             as billing_province_code,
-        nullif(lower(billing_address__country::varchar), '') as billing_country,
-        nullif(lower(billing_address__country_code::varchar), '') 
+        nullif(billing_address__country::varchar, '') as billing_country,
+        nullif(billing_address__country_code::varchar, '') 
             as billing_country_code,
-        nullif(lower(billing_address__zip::varchar), '') as billing_zip_code,
+        nullif(billing_address__zip::varchar, '') as billing_zip_code,
         
         -- browser attributes
         referring_site,
@@ -109,7 +109,7 @@
         token,
         
         -- customer attributes
-        email,
+        lower(email) as email,
         contact_email,
         buyer_accepts_marketing,
         confirmed,
@@ -141,25 +141,25 @@
         
         --addresses
         location_id,
-        nullif(lower(shipping_address:city::varchar), '') as shipping_city,
-        nullif(lower(shipping_address:province::varchar), '') 
+        nullif(shipping_address:city::varchar, '') as shipping_city,
+        nullif(shipping_address:province::varchar, '') 
             as shipping_province,
-        nullif(lower(shipping_address:province_code::varchar), '') 
+        nullif(shipping_address:province_code::varchar, '') 
             as shipping_province_code,
-        nullif(lower(shipping_address:country::varchar), '') as shipping_country,
-        nullif(lower(shipping_address:country_code::varchar), '') 
+        nullif(shipping_address:country::varchar, '') as shipping_country,
+        nullif(shipping_address:country_code::varchar, '') 
             as shipping_country_code,
-        nullif(lower(shipping_address:zip::varchar), '') as shipping_zip_code,
+        nullif(shipping_address:zip::varchar, '') as shipping_zip_code,
         nullif(shipping_address:longitude, '') as shipping_longitude,
         nullif(shipping_address:latitude, '') as shipping_latitude,
-        nullif(lower(billing_address:city::varchar), '') as billing_city,
-        nullif(lower(billing_address:province::varchar), '') as billing_province,
-        nullif(lower(billing_address:province_code::varchar), '') 
+        nullif(billing_address:city::varchar, '') as billing_city,
+        nullif(billing_address:province::varchar, '') as billing_province,
+        nullif(billing_address:province_code::varchar, '') 
             as billing_province_code,
-        nullif(lower(billing_address:country::varchar), '') as billing_country,
-        nullif(lower(billing_address:country_code::varchar), '') 
+        nullif(billing_address:country::varchar, '') as billing_country,
+        nullif(billing_address:country_code::varchar, '') 
             as billing_country_code,
-        nullif(lower(billing_address:zip::varchar), '') as billing_zip_code,
+        nullif(billing_address:zip::varchar, '') as billing_zip_code,
         
         -- nested
         note,

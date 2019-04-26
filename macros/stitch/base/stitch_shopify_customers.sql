@@ -14,8 +14,8 @@
         --dimensions
         nullif(lower(email), '') as email,
         verified_email,
-        nullif(lower(first_name), '') as first_name,
-        nullif(lower(last_name), '') as last_name,
+        nullif(first_name, '') as first_name,
+        nullif(last_name, '') as last_name,
         accepts_marketing,
         state,
         tags,
@@ -42,8 +42,8 @@
         --dimensions
         nullif(lower(email), '') as email,
         verified_email,
-        nullif(lower(first_name), '') as first_name,
-        nullif(lower(last_name), '') as last_name,
+        nullif(first_name, '') as first_name,
+        nullif(last_name, '') as last_name,
         accepts_marketing,
         state,
         tags,
