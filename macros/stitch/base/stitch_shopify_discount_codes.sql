@@ -10,7 +10,7 @@
 
       _sdc_source_key_id as order_id,
       code,
-      amount,
+      (amount * -1) as amount,
       type
 
     from
