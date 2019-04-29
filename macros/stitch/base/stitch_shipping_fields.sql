@@ -1,4 +1,11 @@
-{% macro stitch_shipping_fields() %}
+{% macro stitch_shopify_shipping_fields() %}
+
+    {{ adapter_macro('shopify.stitch_shopify_shipping_fields') }}
+
+{% endmacro %}
+
+{% macro default__stitch_shopify_shipping_fields() %}
+
     nullif(shipping_address__city::varchar, '') as shipping_city,
     nullif(shipping_address__province::varchar, '') 
         as shipping_province,
@@ -17,5 +24,6 @@
     nullif(shipping_address__last_name::varchar, '') as shipping_last_name,
     nullif(shipping_address__name::varchar, '') as shipping_name,
     nullif(shipping_address__phone::varchar, '') as shipping_phone,
+    
 {% endmacro %}
 

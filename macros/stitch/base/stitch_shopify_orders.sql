@@ -53,9 +53,9 @@
         --addresses
         location_id,
         
-        {{ stitch_shipping_fields() }}
+        {{ stitch_shopify_shipping_fields() }}
         
-        {{ stitch_billing_fields() }}
+        {{ stitch_shopify_billing_fields() }}
         
         -- browser attributes
         referring_site,

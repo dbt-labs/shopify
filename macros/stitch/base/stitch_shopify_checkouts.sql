@@ -34,9 +34,9 @@
         
         --address fields
         
-        {{ stitch_billing_fields() }}
+        {{ stitch_shopify_billing_fields() }}
         
-        {{ stitch_shipping_fields() }}
+        {{ stitch_shopify_shipping_fields() }}
                 
         --dates        
         updated_at,

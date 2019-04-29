@@ -1,4 +1,11 @@
-{% macro stitch_billing_fields() %}
+{% macro stitch_shopify_billing_fields() %}
+
+    {{ adapter_macro('shopify.stitch_shopify_billing_fields') }}
+
+{% endmacro %}
+
+{% macro default__stitch_shopify_billing_fields() %}
+
     nullif(billing_address__city::varchar, '') as billing_city,
     nullif(billing_address__province::varchar, '') as billing_province,
     nullif(billing_address__province_code::varchar, '') 
@@ -16,6 +23,7 @@
     nullif(billing_address__longitude, '') as billing_longitude,
     nullif(billing_address__name::varchar, '') as billing_name,
     nullif(billing_address__phone::varchar, '') as billing_phone,
+    
 {% endmacro %}
 
 
