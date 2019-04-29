@@ -17,7 +17,12 @@
         vendor,
 
         body_html,
-        image__src as image_url,
+        
+        {{shopify.stitch_nested_field(
+            field = 'image', 
+            subfields = ['src'],
+            casting = 'varchar(256)',
+            final_field_name = 'image_url')}},
 
         --dates
         published_at,

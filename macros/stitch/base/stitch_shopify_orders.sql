@@ -13,7 +13,11 @@
         app_id,
         name as order_name,
         user_id,
-        customer__id as customer_id,
+        {{shopify.stitch_nested_field(
+            field = 'customer', 
+            subfields = ['id'],
+            casting = 'bigint',
+            final_field_name = 'customer_id')}},
         checkout_id,
         checkout_token,
         cart_token,
@@ -42,10 +46,18 @@
         total_price,
         total_price_usd,
         total_tax,
-        total_shipping_price_set__presentment_money__amount::decimal(38,6) 
-            as total_shipping_cost_base,
-        total_shipping_price_set__presentment_money__currency_code::varchar 
-            as shipping_currency_code,
+        
+        {{shopify.stitch_nested_field(
+            field = 'total_shipping_price_set', 
+            subfields = ['presentment_money__amount'],
+            casting = 'decimal(38,6)',
+            final_field_name = 'total_shipping_cost_base')}},
+        {{shopify.stitch_nested_field(
+            field = 'total_shipping_price_set', 
+            subfields = ['presentment_money__currency_code'],
+            casting = 'varchar(128)',
+            final_field_name = 'shipping_currency_code')}},
+            
         tags,
         taxes_included, --true/false
         order_status_url,
@@ -53,9 +65,9 @@
         --addresses
         location_id,
         
-        {{ stitch_shopify_shipping_fields() }}
+        {{ shopify.stitch_shopify_shipping_fields() }}
         
-        {{ stitch_shopify_billing_fields() }}
+        {{ shopify.stitch_shopify_billing_fields() }}
         
         -- browser attributes
         referring_site,

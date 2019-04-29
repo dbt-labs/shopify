@@ -21,7 +21,11 @@
         tags,
         tax_exempt,
         
-        default_address__id as default_address_id,
+        {{shopify.stitch_nested_field(
+            field = 'default_address', 
+            subfields = ['id'],
+            casting = 'bigint',
+            final_field_name = 'default_address_id')}},
         
         --dates
         created_at,

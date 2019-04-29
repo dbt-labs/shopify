@@ -10,7 +10,11 @@
     
         --ids
         id as checkout_id,
-        customer__id as customer_id,
+        {{shopify.stitch_nested_field(
+            field = 'customer', 
+            subfields = ['id'], 
+            casting = 'bigint',
+            final_field_name = 'customer_id')}},
         nullif(lower(email), '') as email,
         nullif(cart_token, '') as cart_token,
         nullif(token, '') as token,
@@ -34,9 +38,9 @@
         
         --address fields
         
-        {{ stitch_shopify_billing_fields() }}
+        {{ shopify.stitch_shopify_billing_fields() }}
         
-        {{ stitch_shopify_shipping_fields() }}
+        {{ shopify.stitch_shopify_shipping_fields() }}
                 
         --dates        
         updated_at,
