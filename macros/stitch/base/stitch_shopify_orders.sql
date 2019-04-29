@@ -30,7 +30,8 @@
         confirmed,
         
         -- order attributes
-        number as "number",
+        
+        {{shopify.stitch_quoted_field('number', 'internal_number')}},
         order_number,
         currency,
         presentment_currency,
@@ -49,12 +50,13 @@
         
         {{shopify.stitch_nested_field(
             field = 'total_shipping_price_set', 
-            subfields = ['presentment_money__amount'],
+            subfields = ['presentment_money', 'amount'],
             casting = 'decimal(38,6)',
             final_field_name = 'total_shipping_cost_base')}},
+        
         {{shopify.stitch_nested_field(
             field = 'total_shipping_price_set', 
-            subfields = ['presentment_money__currency_code'],
+            subfields = ['presentment_money', 'currency_code'],
             casting = 'varchar(128)',
             final_field_name = 'shipping_currency_code')}},
             
@@ -75,102 +77,19 @@
         landing_site,
         source_name,
         
-        -- dates
-        created_at,
-        processed_at,
-        closed_at,
-        cancelled_at,
-        cancel_reason,
-        updated_at
+        {% if target.type == 'snowflake' %}
         
-    from
-      {{ var('orders_table') }}
-    where test = false
-
-{% endmacro %}
-
-
-{% macro snowflake__stitch_shopify_orders() %}
-
-    select 
-    
-        -- ids
-        id as order_id,
-        app_id,
-        name as order_name,
-        user_id,
-        customer:id as customer_id,
-        checkout_id,
-        checkout_token,
-        cart_token,
-        token,
-        
-        -- customer attributes
-        lower(email) as email,
-        contact_email,
-        buyer_accepts_marketing,
-        confirmed,
-        
-        -- order attributes
-        number,
-        order_number,
-        currency,
-        presentment_currency,
-        financial_status,
-        fulfillment_status,
-        gateway,
-        processing_method,
-        total_tip_received,
-        total_weight,
-        total_discounts::number(38,6) * -1 as total_discounts_base,
-        subtotal_price::number(38,6) as subtotal_price,
-        total_line_items_price,
-        total_price,
-        total_price_usd,
-        total_tax,
-        total_shipping_price_set:presentment_money:amount::number(38,6) 
-            as total_shipping_cost_base,
-        total_shipping_price_set:presentment_money:currency_code::varchar 
-            as shipping_currency_code,
-        tags,
-        taxes_included, --true/false
-        order_status_url,
-        
-        --addresses
-        location_id,
-        nullif(shipping_address:city::varchar, '') as shipping_city,
-        nullif(shipping_address:province::varchar, '') 
-            as shipping_province,
-        nullif(shipping_address:province_code::varchar, '') 
-            as shipping_province_code,
-        nullif(shipping_address:country::varchar, '') as shipping_country,
-        nullif(shipping_address:country_code::varchar, '') 
-            as shipping_country_code,
-        nullif(shipping_address:zip::varchar, '') as shipping_zip_code,
-        nullif(shipping_address:longitude, '') as shipping_longitude,
-        nullif(shipping_address:latitude, '') as shipping_latitude,
-        nullif(billing_address:city::varchar, '') as billing_city,
-        nullif(billing_address:province::varchar, '') as billing_province,
-        nullif(billing_address:province_code::varchar, '') 
-            as billing_province_code,
-        nullif(billing_address:country::varchar, '') as billing_country,
-        nullif(billing_address:country_code::varchar, '') 
-            as billing_country_code,
-        nullif(billing_address:zip::varchar, '') as billing_zip_code,
-        
-        -- nested
-        note,
-        total_shipping_price_set,
-        refunds,
-        discount_codes,
-        line_items,
-        shipping_lines,
-        
-        -- browser attributes
-        referring_site,
-        browser_ip,
-        landing_site,
-        source_name,
+            -- these nested fields are needed for snowflake to denest in 
+            -- other models
+            
+            note,
+            total_shipping_price_set,
+            refunds,
+            discount_codes,
+            line_items,
+            shipping_lines,
+            
+        {% endif %}
         
         -- dates
         created_at,

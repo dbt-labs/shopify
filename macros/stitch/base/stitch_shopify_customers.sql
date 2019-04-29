@@ -35,31 +35,3 @@
         {{ var('customers_table') }}
 
 {% endmacro %}
-
-{% macro snowflake__stitch_shopify_customers() %}
-
-    select
-        
-        --ids
-        id as customer_id,
-        
-        --dimensions
-        nullif(lower(email), '') as email,
-        verified_email,
-        nullif(first_name, '') as first_name,
-        nullif(last_name, '') as last_name,
-        accepts_marketing,
-        state,
-        tags,
-        tax_exempt,
-        
-        default_address:id::number(38,6) as default_address_id,
-        
-        --dates
-        created_at,
-        updated_at
-        
-    from
-        {{ var('customers_table') }}
-
-{% endmacro %}

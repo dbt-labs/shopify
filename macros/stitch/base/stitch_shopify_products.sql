@@ -23,33 +23,10 @@
             subfields = ['src'],
             casting = 'varchar(256)',
             final_field_name = 'image_url')}},
-
-        --dates
-        published_at,
-        created_at,
-        updated_at
-
-    from
-      {{ var('products_table') }}
-
-{% endmacro %}
-
-
-{% macro snowflake__stitch_shopify_products() %}
-
-    select
-
-        id as product_id,
-        nullif(lower(product_type), '') as product_type,
-        nullif(lower(title), '') as title,
-        handle,
-        published_scope,
-        tags,
-        vendor,
-        
-        variants,
-        body_html,
-        image:src::string as image_url,
+            
+        {% if target.type == 'snowflake' %}        
+            variants,
+        {% endif %}
 
         --dates
         published_at,
