@@ -8,13 +8,18 @@ clean-targets: ["target"]
 test-paths: ["test"]
 
 models:
-  vars: #all should be schema.table
-    checkouts_table:        #checkouts
-    customers_table:        #customers
-    orders_table:           #orders
-    transactions_table:     #transactions
-    products_table:         #products
-    refunds_table:          #order_refunds
-    discount_codes_table:   #orders__discount_codes
-    order_items_table:      #orders__line_items
-    products_variants_table: #products__variants
+  shopify:
+    vars: #all should be schema.table
+      #needed for both Snowflake and Redshift:
+      checkouts_table:          #abandoned_checkouts
+      customers_table:          #customers
+      orders_table:             #orders
+      transactions_table:       #transactions
+      products_table:           #products
+      #the below are just needed for Redshift
+      refunds_table:            #orders__refunds
+      refund_items_table:       #orders__refunds__refund_line_items
+      refund_adjustments_table: #orders__refunds__order_adjustments
+      discount_codes_table:     #orders__discount_codes
+      order_items_table:        #orders__line_items
+      products_variants_table:  #products__variants
